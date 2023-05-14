@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './app';
+import { StoreProvider } from './app/providers/StoreProvider';
 
 const component = document.getElementById('root');
 
@@ -8,5 +9,7 @@ if (!component) {
 }
 
 ReactDOM.createRoot(component).render(
-    <App />,
+    <StoreProvider>
+        <App />
+    </StoreProvider>,
 );

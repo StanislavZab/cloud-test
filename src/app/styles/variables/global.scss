@@ -7,6 +7,15 @@
     --font-line-l: 32px;
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
+    // color
+    --bg-color: white;
+    --primary-color: black;
+    --secondary-color: grey;
+    --red-light: rgb(253 44 44);
+    --red-dark: rgb(137 0 0);
+    --inverted-primary-color: white;
+    --inverted-secondary-color: grey;
+
     // header
     --header-height: 50px;
 }
