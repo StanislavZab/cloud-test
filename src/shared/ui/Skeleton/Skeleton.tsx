@@ -1,5 +1,5 @@
 import { CSSProperties, memo } from 'react';
-import { classNames } from '@/shared/lib/classNames/classNames';
+import classNames from 'classnames';
 import cls from './Skeleton.module.scss';
 
 interface SceletonProps {
@@ -25,7 +25,7 @@ export const Skeleton: React.FC<SceletonProps> = memo((props) => {
 
     return (
         <div
-            className={classNames(cls.skeleton, {}, [className])}
+            className={classNames(cls.skeleton, className)}
             style={styles}
         />
     );

@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
-import App from './app';
 import { StoreProvider } from './app/providers/StoreProvider';
+import { RouterProvider } from './app/providers/RouterProvider';
+import '@/app/styles/index.scss';
 
 const component = document.getElementById('root');
 
@@ -10,6 +11,6 @@ if (!component) {
 
 ReactDOM.createRoot(component).render(
     <StoreProvider>
-        <App />
+        <RouterProvider />
     </StoreProvider>,
 );

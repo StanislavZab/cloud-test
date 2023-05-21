@@ -1,11 +1,6 @@
 @import 'reset';
 @import 'variables/global';
 
-.app {
+body {
     font: var(--font-m);
-    max-width: 1000px;
-    min-height: 100vh;
-    margin: auto;
-    display: flex;
-    justify-content: center;
 }

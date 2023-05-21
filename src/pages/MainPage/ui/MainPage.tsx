@@ -1,18 +1,15 @@
-import classNames from 'classnames';
+import { Header } from '@/widget/Header';
+import { FileList, FilesCount } from '@/entities/FileList';
 import cls from './MainPage.module.scss';
+import { AddFiles } from '@/features/FilesAction';
 
-interface MainPageProps {
-    className?: string;
-}
-
-export const MainPage: React.FC<MainPageProps> = (props) => {
-    const {
-        className,
-    } = props;
-
-    return (
-        <div className={classNames(cls.mainPage, className)}>
-            MainPage
+export const MainPage = () => (
+    <div className={cls.mainPage}>
+        <Header />
+        <div className={cls.down}>
+            <FilesCount />
+            <AddFiles />
         </div>
-    );
-};
+        <FileList />
+    </div>
+);

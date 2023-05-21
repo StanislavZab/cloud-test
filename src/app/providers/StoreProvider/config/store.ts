@@ -1,39 +1,37 @@
 import {
-    CombinedState, configureStore, Reducer, ReducersMapObject,
+    combineReducers,
+    configureStore,
 } from '@reduxjs/toolkit';
 import { $api } from '@/shared/api/api';
-import { createReducerManager } from './reducerManager';
-import { StateSchema } from './StateSchema';
-import { userReducer } from '@/entities/User';
+import { loginReducer } from '@/features/AuthByUsername';
+import { fileReducer } from '@/entities/FileList';
+import { registrationReducer } from '@/features/Registration/model/slice/registrationSlice';
+import { authUserReducer } from '@/entities/AuthUser';
+import { filesActionReducer } from '@/features/FilesAction';
 
-export function createReduxStore(
-    initialState: StateSchema,
-    asyncReducers?: ReducersMapObject<StateSchema>,
-) {
-    const rootReducers: ReducersMapObject<StateSchema> = {
-        ...asyncReducers,
-        user: userReducer,
-    };
+const reducer = combineReducers({
+    auth: authUserReducer,
+    loginForm: loginReducer,
+    registrationForm: registrationReducer,
+    files: fileReducer,
+    filesAction: filesActionReducer,
+});
 
-    const reducerManager = createReducerManager(rootReducers);
-
-    const store = configureStore({
-        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
-        devTools: __IS_DEV__,
-        preloadedState: initialState,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-            thunk: {
-                extraArgument: {
-                    api: $api,
-                },
+const store = configureStore({
+    reducer,
+    devTools: __IS_DEV__,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        thunk: {
+            extraArgument: {
+                api: $api,
             },
-        }),
-    });
+        },
+    }),
+});
 
-    // @ts-ignore
-    store.reducerManager = reducerManager;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
 
-    return store;
-}
-
-export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
+export default store;

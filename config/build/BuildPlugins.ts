@@ -8,7 +8,7 @@ import { type BuildOptions } from './types/config';
 
 export function BuildPlugins(options: BuildOptions): WebpackPluginInstance[] {
     const {
-        paths, isDev, apiUrl, project,
+        paths, isDev, apiUrl,
     } = options;
     return [
         new ProgressPlugin(),
@@ -22,13 +22,7 @@ export function BuildPlugins(options: BuildOptions): WebpackPluginInstance[] {
         new DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
-            __PROJECT__: JSON.stringify(project),
         }),
-        // new CopyPlugin({
-        //     patterns: [
-        //         { from: paths.locales, to: paths.buildLocales },
-        //     ],
-        // }),
         new HotModuleReplacementPlugin(),
         new ForkTsCheckerWebpackPlugin({
             typescript: {

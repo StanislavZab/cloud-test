@@ -19,7 +19,7 @@ export function BuildWebpackConfig(options: BuildOptions): webpack.Configuration
             path: paths.build,
             filename: '[name].[contenthash:8].js',
             clean: true,
-            publicPath: '/',
+            publicPath: '',
         },
         plugins: BuildPlugins(options),
     };

@@ -1,7 +1,5 @@
 import classNames from 'classnames';
-import { Text } from '@/shared/ui/Text/Text';
 import cls from './LoginPage.module.scss';
-import { Input } from '@/shared/ui/Input/Input';
 import { LoginForm } from '@/features/AuthByUsername';
 
 interface LoginPageProps {
