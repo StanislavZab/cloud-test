@@ -1,4 +1,12 @@
 .image {
     width: 40px;
     height: 40px;
+
+    &:hover {
+        cursor: pointer;
+        transform:scale(1.5);
+        z-index: 1;
+        width: 200px;
+        height: 200px;
+    }
 }
